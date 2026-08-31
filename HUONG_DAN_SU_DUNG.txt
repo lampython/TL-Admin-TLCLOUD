@@ -1,0 +1,59 @@
+=================================================================================
+📘 HƯỚNG DẪN SỬ DỤNG CHI TIẾT PHẦN MỀM TOOL TL - CLOUD
+=================================================================================
+
+Phần mềm này được thiết kế để tự động hóa quy trình dọn dẹp file rác, đồng bộ dữ liệu
+từ máy trạm lên máy chủ Cloud và sao chép dữ liệu ra USB cho các đơn vị kế toán.
+
+---------------------------------------------------------------------------------
+PHẦN 1: HƯỚNG DẪN SỬ DỤNG (DÀNH CHO NGƯỜI DÙNG)
+---------------------------------------------------------------------------------
+
+1. CHỌN ĐƠN VỊ CẦN XỬ LÝ:
+   - Tại cột bên trái, danh sách các công ty sẽ được tự động tải từ Thư mục Nguồn.
+   - Sử dụng ô "🔍 Tìm Mã số thuế / Tên..." để tìm nhanh công ty bạn cần.
+   - Nhấp chuột vào tên công ty để bắt đầu làm việc.
+
+2. CÁC CHỨC NĂNG CHÍNH:
+   - 🧹 DỌN RÁC: Tự động quét và xóa các file tạm, file rác (như Thumbs.db, ~$file.xlsx, .tmp...)
+     trong thư mục con của đơn vị đã chọn để làm sạch dữ liệu trước khi đồng bộ.
+   - ☁️ SYNC: Đồng bộ dữ liệu của DUY NHẤT đơn vị đang chọn từ máy nguồn lên máy chủ Cloud.
+   - ☁️ SYNC ALL: Đồng bộ TOÀN BỘ danh sách đơn vị hiện có. Hệ thống sẽ hỏi xác nhận trước
+     khi chạy để tránh thao tác nhầm.
+   - 💾 SAO CHÉP USB: Chép dữ liệu từ máy chủ Cloud ra ổ đĩa USB của bạn.
+     * Lưu ý: Toàn bộ dữ liệu cũ trên USB sẽ bị FORMAT (XÓA SẠCH) trước khi chép mới.
+
+3. TIỆN ÍCH HỖ TRỢ:
+   - 📂 Nguồn: Mở nhanh thư mục gốc của đơn vị đang chọn trên máy tính/NAS.
+   - 📁 Đích: Mở nhanh thư mục lưu trữ của đơn vị đó trên máy chủ Cloud.
+   - Nhật ký xử lý (Log): Theo dõi chi tiết từng file được đồng bộ hoặc xóa bỏ theo thời gian thực.
+   - Thanh tiến trình: Hiển thị % hoàn thành khi đang sao chép USB.
+
+---------------------------------------------------------------------------------
+PHẦN 2: HƯỚNG DẪN CẤU HÌNH (DÀNH CHO ADMIN)
+---------------------------------------------------------------------------------
+
+Để tùy chỉnh hệ thống, nhấn vào nút "⚙️ Cấu hình" ở góc trên bên trái.
+
+1. TAB 📁 HỆ THỐNG:
+   - Thư mục Nguồn (SRC_ROOT): Đường dẫn đến nơi chứa dữ liệu gốc của tất cả công ty.
+     (Ví dụ: \\nastl\TL)
+   - Thư mục Đích (DEST_ROOT): Đường dẫn đến nơi lưu trữ trên máy chủ Cloud/Server.
+     (Ví dụ: \\nastl\DULIEUCONGTY\TLCloud_2024)
+   - Năm làm việc (YEAR): Phần mềm sẽ chỉ tìm các đơn vị có thư mục con mang tên năm này.
+   - Thư mục con: Liệt kê các thư mục quan trọng cần đồng bộ, cách nhau bằng dấu phẩy.
+     (Ví dụ: 1. CHUNG TU, 2. SO SACH)
+
+2. TAB 🎨 GIAO DIỆN:
+   - Tên phần mềm (Title): Bạn có thể đổi tên hiển thị trên thanh tiêu đề của ứng dụng.
+     Tên này sẽ thay đổi ngay sau khi bạn nhấn Save.
+
+3. FILE CẤU HÌNH GỐC:
+   - Toàn bộ cài đặt được lưu tại file "config.json" nằm cùng thư mục với phần mềm.
+   - Admin có thể copy file này sang máy khác để đồng nhất cấu hình mà không cần nhập lại tay.
+
+---------------------------------------------------------------------------------
+💡 LƯU Ý QUAN TRỌNG:
+- Luôn đảm bảo kết nối mạng LAN/Internet ổn định khi thực hiện Sync lên Cloud.
+- Kiểm tra kỹ ổ đĩa USB trước khi bấm "Sao Chép USB" vì dữ liệu cũ trên USB không thể khôi phục.
+=================================================================================

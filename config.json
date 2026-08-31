@@ -1,0 +1,23 @@
+{
+    "YEAR_CONFIGS": {
+        "2024": {
+            "SRC_ROOT": "\\\\nastl\\TL",
+            "DEST_ROOT": "\\\\nastl\\DULIEUCONGTY\\TLCloud_2024",
+            "DATABASE_PATH": "database"
+        },
+        "2025": {
+            "SRC_ROOT": "\\\\nastl\\TL",
+            "DEST_ROOT": "\\\\nastl\\DULIEUCONGTY\\TLCloud_2025",
+            "DATABASE_PATH": "database"
+        }
+    },
+    "ACTIVE_YEAR": "2025",
+    "SUBFOLDERS": [
+        "1. CHUNG TU",
+        "2. SO SACH"
+    ],
+    "APP_NAME": "Tool TL - CLOUD",
+    "YEAR": "2025",
+    "SRC_ROOT": "\\\\nastl\\TL",
+    "DEST_ROOT": "\\\\nastl\\DULIEUCONGTY\\TLCloud_2025"
+}
