@@ -2211,10 +2211,35 @@ class MainApp(QMainWindow):
         self.update_mtc_completer()
         self.update_dept_user_completers()
 
+        # Cố định và tự động ghi nhớ Phòng & User đã chọn/nhập
+        last_phong = CONFIG.get("LAST_PHONG", "")
+        last_user = CONFIG.get("LAST_USER", "")
+        if last_phong and hasattr(self, 'combo_phong'):
+            self.combo_phong.setCurrentText(last_phong)
+        if last_user and hasattr(self, 'combo_user'):
+            self.combo_user.setCurrentText(last_user)
+
+        if hasattr(self, 'combo_phong'):
+            self.combo_phong.currentTextChanged.connect(self._on_phong_changed)
+        if hasattr(self, 'combo_user'):
+            self.combo_user.currentTextChanged.connect(self._on_user_changed)
+
         # Cài đặt Auto-detect USB
         self.usb_timer = QTimer(self)
         self.usb_timer.timeout.connect(self.auto_detect_usb)
         self.usb_timer.start(2000)
+
+    def _on_phong_changed(self, text):
+        val = text.strip()
+        if val:
+            CONFIG["LAST_PHONG"] = val
+            save_config(CONFIG)
+
+    def _on_user_changed(self, text):
+        val = text.strip()
+        if val:
+            CONFIG["LAST_USER"] = val
+            save_config(CONFIG)
 
 
     def switch_view(self, index):
@@ -2297,28 +2322,12 @@ class MainApp(QMainWindow):
                             mtc_item = self.view_db.table.item(i, col_idx_mtc)
                             if mtc_item:
                                 self.mtc_input.setText(mtc_item.text().strip())
-                        if hasattr(self, 'combo_phong') and col_idx_phong != -1:
-                            p_item = self.view_db.table.item(i, col_idx_phong)
-                            if p_item and p_item.text().strip():
-                                self.combo_phong.setCurrentText(p_item.text().strip())
-                            else:
-                                self.combo_phong.setCurrentText("")
-                        if hasattr(self, 'combo_user') and col_idx_user != -1:
-                            u_item = self.view_db.table.item(i, col_idx_user)
-                            if u_item and u_item.text().strip():
-                                self.combo_user.setCurrentText(u_item.text().strip())
-                            else:
-                                self.combo_user.setCurrentText("")
                         found = True
                         break
                 if not found:
                     self.mtc_input.clear()
-                    if hasattr(self, 'combo_phong'): self.combo_phong.setCurrentText("")
-                    if hasattr(self, 'combo_user'): self.combo_user.setCurrentText("")
             else:
                 self.mtc_input.clear()
-                if hasattr(self, 'combo_phong'): self.combo_phong.setCurrentText("")
-                if hasattr(self, 'combo_user'): self.combo_user.setCurrentText("")
         finally:
             self._is_syncing_mtc_and_company = False
 
@@ -2354,14 +2363,6 @@ class MainApp(QMainWindow):
                 for i in range(self.view_db.table.rowCount()):
                     mtc_item = self.view_db.table.item(i, col_idx_mtc)
                     if mtc_item and mtc_item.text().strip() == mtc_text:
-                        if hasattr(self, 'combo_phong') and col_idx_phong != -1:
-                            p_item = self.view_db.table.item(i, col_idx_phong)
-                            if p_item and p_item.text().strip():
-                                self.combo_phong.setCurrentText(p_item.text().strip())
-                        if hasattr(self, 'combo_user') and col_idx_user != -1:
-                            u_item = self.view_db.table.item(i, col_idx_user)
-                            if u_item and u_item.text().strip():
-                                self.combo_user.setCurrentText(u_item.text().strip())
                         mst_item = self.view_db.table.item(i, col_idx_mst)
                         if mst_item:
                             mst_val = mst_item.text().strip()
