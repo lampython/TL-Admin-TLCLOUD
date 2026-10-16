@@ -15,6 +15,9 @@ dist/
 
 # Backups and temporary files
 BACKUP_*/
+backup*/
+*_backup*
+*_1.db
 *.tmp
 *.log
 crash.log

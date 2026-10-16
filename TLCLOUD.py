@@ -35,7 +35,7 @@ def get_app_root():
     return os.path.dirname(os.path.abspath(__file__))
 
 APP_ROOT = get_app_root()
-CURRENT_VERSION = "1.3"
+CURRENT_VERSION = "1.3.1"
 
 # Style giao diện (Khai báo sớm để các Dialog sử dụng được)
 STYLESHEET = """

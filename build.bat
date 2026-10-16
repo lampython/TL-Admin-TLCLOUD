@@ -1,4 +1,6 @@
 @echo off
+cd /d "%~dp0"
+if exist ".\.venv\Scripts\activate.bat" call ".\.venv\Scripts\activate.bat"
 echo ==================================================
 echo Building Tool TL - CLOUD v1.3 (ONEDIR)
 echo ==================================================

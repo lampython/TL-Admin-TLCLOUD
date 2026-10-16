@@ -19,5 +19,7 @@
     "APP_NAME": "Tool TL - CLOUD",
     "YEAR": "2025",
     "SRC_ROOT": "\\\\nastl\\TL",
-    "DEST_ROOT": "\\\\nastl\\DULIEUCONGTY\\TLCloud_2025"
+    "DEST_ROOT": "\\\\nastl\\DULIEUCONGTY\\TLCloud_2025",
+    "LAST_PHONG": "CS",
+    "LAST_USER": "CS-NGUYET"
 }
